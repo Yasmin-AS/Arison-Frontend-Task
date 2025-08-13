@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs, Input, Button, Card, Avatar } from "antd";
-import { SearchOutlined, DownloadOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
 import {
   fetchOverviewData,
@@ -61,7 +61,7 @@ const UserMgt: React.FC = () => {
                 Break down lengthy texts into concise summaries to grasp.
               </p>
             </span>
-            <div className=" grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               {overviewData.map((card: any) => {
                 const isActive = activeCardId === card.id;
 
@@ -70,7 +70,13 @@ const UserMgt: React.FC = () => {
                     key={card.id}
                     onClick={() => setActiveCardId(isActive ? null : card.id)}
                     className={`p-4 rounded-lg shadow cursor-pointer transition-colors 
-          ${isActive ? "bg-blue-500 text-white" : "bg-white text-black"}`}
+                      ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "bg-white text-black"
+                      } 
+                      hover:shadow-lg
+                    `}
                   >
                     <div className="flex justify-between">
                       <img
@@ -82,6 +88,7 @@ const UserMgt: React.FC = () => {
                         src={dots}
                         alt=""
                         className="w-4 h-4 cursor-pointer"
+                        onClick={(e) => e.stopPropagation()}
                       />
                     </div>
                     <p className="text-lg font-bold">{card.title}</p>
@@ -102,49 +109,72 @@ const UserMgt: React.FC = () => {
           </div>
 
           {/* Approval Requests */}
-          <div className=" col-span-2 bg-white p-4 gap-2 rounded-lg ">
+          <div className="col-span-2 bg-white p-4 gap-2 rounded-lg">
             <h2 className="text-xl font-bold mb-3">Approval Requests</h2>
             <p className="text-gray-500 text-lg pl-1">
               Manage your markets location and other informations.
             </p>
-            {approvalRequests.map((req: any) => (
-              <div className="my-2" key={req.id}>
-                <Card
-                  key={req.id}
-                  className="items-center border-b my-2 last:border-0"
-                >
-                  <div className="flex items-center justify-between pr-4">
-                    {/* Left side */}
-                    <div className="flex items-center gap-3">
-                      <Avatar src={req.avatar} className="w-7 h-7" />
-                      <span>
-                        <p className="font-medium">{req.name}</p>
-                        <p className="text-xs text-gray-500">{req.date}</p>
-                      </span>
-                    </div>
+            {approvalRequests.map((req: any) => {
+              const isActive = activeCardId === req.id;
 
-                    {/* Right side */}
-                    <div className="flex items-center gap-2">
-                      <span className="text-gray-600 text-sm">
-                        {req.carType}
-                      </span>
-                      <img
-                        src={dots}
-                        alt="menu"
-                        className="w-4 h-4 cursor-pointer"
-                      />
+              return (
+                <div className="my-2" key={req.id}>
+                  <Card
+                    onClick={() => setActiveCardId(isActive ? null : req.id)}
+                    className={`
+                      items-center border-b my-2 last:border-0 cursor-pointer transition
+                      ${
+                        isActive
+                          ? "bg-blue-500 text-white"
+                          : "bg-white text-black"
+                      }
+                      hover:shadow-lg
+                    `}
+                  >
+                    <div className="flex items-center justify-between pr-4">
+                      {/* Left side */}
+                      <div className="flex items-center gap-3">
+                        <Avatar src={req.avatar} className="w-7 h-7" />
+                        <span>
+                          <p className="font-medium">{req.name}</p>
+                          <p
+                            className={`text-xs ${
+                              isActive ? "text-white/80" : "text-gray-500"
+                            }`}
+                          >
+                            {req.date}
+                          </p>
+                        </span>
+                      </div>
+
+                      {/* Right side */}
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`text-sm ${
+                            isActive ? "text-white" : "text-gray-600"
+                          }`}
+                        >
+                          {req.carType}
+                        </span>
+                        <img
+                          src={dots}
+                          alt="menu"
+                          className="w-4 h-4 cursor-pointer"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </div>
-            ))}
+                  </Card>
+                </div>
+              );
+            })}
           </div>
         </div>
       </Card>
+
       <Card>
         {/* Tabs & Search */}
-        <div className="flex justify-between  gap-150 p-4">
-          {/* <div className="flex gap-2"> */}
+        <div className="flex justify-between gap-150 p-4">
           <Input
             placeholder="Search for id, name, phone number"
             suffix={<SearchOutlined />}
@@ -153,21 +183,21 @@ const UserMgt: React.FC = () => {
             onChange={(e) => setSearchText(e.target.value)}
           />
           <Button>
-            {" "}
-            <img src={exportIcon} />
+            <img src={exportIcon} alt="export" />
             Export
           </Button>
         </div>
-        {/* </div> */}
-        <Tabs
-          activeKey={activeCategory}
-          onChange={setActiveCategory}
-          type="card"
-        >
-          {driverCategories.map((cat: any) => (
-            <TabPane key={cat.id} tab={`${cat.label} (${cat.count})`} />
-          ))}
-        </Tabs>
+        <div className="w-screen">
+          <Tabs
+            activeKey={activeCategory}
+            onChange={setActiveCategory}
+            type="card"
+          >
+            {driverCategories.map((cat: any) => (
+              <TabPane key={cat.id} tab={`${cat.label} (${cat.count})`} />
+            ))}
+          </Tabs>
+        </div>
         {/* Table */}
         <TableLayout />
       </Card>

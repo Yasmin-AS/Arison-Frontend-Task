@@ -25,9 +25,11 @@ export function useLogin() {
     mutationFn: (data) =>
       api.post("/api/v1/auth/admin-login", data).then((res) => res.data),
     onSuccess: (data) => {
-      setToken(data.token);
+      // Update Zustand store and persist to localStorage
+      setToken(data.token); // will also update isAuthenticated
       setUser(data.user);
-      // Optionally save user info to localStorage or Zustand
+
+      // These are optional if you already persist inside setToken/setUser
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("authUser", JSON.stringify(data.user));
     },

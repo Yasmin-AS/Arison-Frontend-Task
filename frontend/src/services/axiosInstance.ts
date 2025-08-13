@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASEURL = window.location.origin;
+const BASEURL = window.location.origin || "http://localhost:5000";
 
 const api = axios.create({
   baseURL: BASEURL,
@@ -8,7 +8,6 @@ const api = axios.create({
   },
 });
 
-// Optionally add token on requests
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("authToken");
   if (token) {

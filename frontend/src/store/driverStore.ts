@@ -3,7 +3,7 @@ import { create } from "zustand";
 interface DriverState {
   searchText: string;
   activeCategory: string;
-  activeCardId: string | null; // store the selected card
+  activeCardId: string | null;
   setSearchText: (text: string) => void;
   setActiveCategory: (key: string) => void;
   setActiveCardId: (id: string | null) => void;
