@@ -1,16 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Menu } from "antd";
 
 import DashboardIcon from "../../../assets/icons/Icon.png";
-import UserMgmtIcon from "../../../assets/icons/Icon (1).png";
-import AdminMgmtIcon from "../../../assets/icons/Icon (2).png";
-import PricingIcon from "../../../assets/icons/Icon (3).png";
-import FinanceIcon from "../../../assets/icons/Icon (4).png";
-import SupportIcon from "../../../assets/icons/Icon (5).png";
-import LoyaltyIcon from "../../../assets/icons/Icon (5).png";
+import UserMgmtIcon from "../../../assets/icons/Icon1.png";
+import AdminMgmtIcon from "../../../assets/icons/Icon2.png";
+import PricingIcon from "../../../assets/icons/Icon3.png";
+import FinanceIcon from "../../../assets/icons/Icon4.png";
+import SupportIcon from "../../../assets/icons/Icon5.png";
+import LoyaltyIcon from "../../../assets/icons/Icon5.png";
 import AccountIcon from "../../../assets/icons/settings.png";
-import HelpIcon from "../../../assets/icons/Icon (6).png";
+import HelpIcon from "../../../assets/icons/Icon6.png";
 import ProfileImg from "../../../assets/images/profile.jpg";
+import CollapseImg from "../../../assets/icons/Vector.png";
+const Admin = [{ Name: "Mensur Mohammed", Role: "Super Admin" }];
+
 function SideBar() {
   const navigate = useNavigate();
 
@@ -18,7 +21,7 @@ function SideBar() {
     {
       key: "general-heading",
       label: (
-        <span className="text-lg font-semibold text-gray-500">GENERAL</span>
+        <span className="text-base font-semibold text-gray-500">GENERAL</span>
       ),
       type: "group" as const,
       children: [],
@@ -86,10 +89,13 @@ function SideBar() {
   ];
 
   return (
-    <div>
+    <div className="!bg-white flex flex-col justify-between">
       {" "}
-      <div className="px-4 py-6 text-xl font-bold">
-        Voom<span className="text-blue-500">Go</span>
+      <div className="p-5 flex justify-between text-xl font-bold">
+        <div>
+          Voom<span className="text-blue-500">Go</span>
+        </div>
+        <img src={CollapseImg} className="w-6 h-6" />
       </div>
       {/* Menu */}
       <Menu
@@ -98,16 +104,25 @@ function SideBar() {
         onClick={({ key }) => {
           if (!key.includes("-heading")) navigate(`/admin/${key}`);
         }}
-        defaultOpenKeys={["user-management", "admin-management"]}
+        defaultOpenKeys={["user-management"]}
         className="flex-1 border-0 custom-menu"
       />
-      <div className="bg-white p-4 border-t border-gray-200 flex items-center gap-3">
-        <img src={ProfileImg} alt="Profile" className="w-15 h-15 rounded-lg" />
-        <div className="flex flex-col text-sm">
-          <span className="font-medium">Mensur Mohammed</span>
-          <span className="text-gray-500 text-xs">Super Admin</span>
+      {Admin.map((admin, index) => (
+        <div
+          className="bg-white p-4 border-t border-gray-200 flex items-center gap-3 fixed bottom-0 "
+          key={index}
+        >
+          <img
+            src={ProfileImg}
+            alt="Profile"
+            className="w-15 h-15 rounded-lg"
+          />
+          <div key={index} className="flex flex-col text-sm">
+            <span className="font-medium">{admin.Name}</span>
+            <span className="text-gray-500 text-xs">{admin.Role}</span>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }

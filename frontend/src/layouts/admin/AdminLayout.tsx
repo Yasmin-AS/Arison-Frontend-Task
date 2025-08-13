@@ -1,6 +1,7 @@
 import { Layout, Menu } from "antd";
 import type { ReactNode } from "react";
 import SideBar from "../../components/admin/common/SideBar";
+import TopBar from "../../components/admin/common/TopBar";
 
 const { Header, Sider, Content } = Layout;
 
@@ -10,17 +11,20 @@ interface AdminLayoutProps {
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
   return (
-    <div className="bg-gray-100">
-      <Layout className="min-h-screen w-screen overflow-hidden bg-white">
-        <Sider width={240} className="bg-white flex flex-col justify-between">
+    <div>
+      <Layout>
+        <Sider
+          width={240}
+          className="min-h-screen w-screen overflow-hidden !bg-white"
+        >
           <SideBar />
         </Sider>
 
         <Layout>
-          <Header className="bg-white shadow px-6 flex items-center justify-between">
-            {/* Search, Notifications, Profile */}
+          <Header className="!bg-white !shadow-none ">
+            <TopBar />
           </Header>
-          <Content className="p-6">{children}</Content>
+          <Content className="p-4 bg-gray-100">{children}</Content>
         </Layout>
       </Layout>
     </div>
