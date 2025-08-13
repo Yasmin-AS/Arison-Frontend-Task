@@ -1,3 +1,11 @@
+import person1 from "../assets/images/person1.jpg";
+import avatar1 from "../assets/images/avatar1.jpg";
+import avatar2 from "../assets/images/avatar2.png";
+import avatar3 from "../assets/images/avatar3.png";
+import avatar4 from "../assets/images/avatar4.png";
+import avatar5 from "../assets/images/avatar5.png";
+import avatar6 from "../assets/images/avatar6.png";
+import avatar7 from "../assets/images/avatar7.png";
 export const fetchOverviewData = async () => {
   return [
     {
@@ -25,7 +33,7 @@ export const fetchApprovalRequests = async () => {
       id: 1,
       name: "Nesredin Haji",
       date: "04/17/23 8:25 PM",
-      avatar: "https://i.pravatar.cc/40",
+      avatar: person1,
 
       carType: "XL Van",
     },
@@ -33,7 +41,7 @@ export const fetchApprovalRequests = async () => {
       id: 2,
       name: "Nesredin Haji",
       date: "04/17/23 8:25 PM",
-      avatar: "https://i.pravatar.cc/40",
+      avatar: person1,
 
       carType: "Boda Boda",
     },
@@ -41,7 +49,7 @@ export const fetchApprovalRequests = async () => {
       id: 3,
       name: "Nesredin Haji",
       date: "04/17/23 8:25 PM",
-      avatar: "https://i.pravatar.cc/40",
+      avatar: person1,
 
       carType: "Economy",
     },
@@ -63,7 +71,7 @@ export const fetchDrivers = async () => {
     {
       id: "012321",
       name: "Esmaeil Abdukadir",
-      avatar: "https://i.pravatar.cc/40",
+      avatar: avatar1,
       phone: "0912873465",
       carType: "Boda Boda",
       dateCreated: "04/17/23 8:25 PM",
@@ -72,7 +80,7 @@ export const fetchDrivers = async () => {
     {
       id: "012322",
       name: "Sumeya Abdukadir",
-      avatar: "https://i.pravatar.cc/41",
+      avatar: avatar2,
       phone: "0912873465",
       carType: "Boda Boda",
       dateCreated: "04/17/23 8:25 PM",
@@ -81,7 +89,7 @@ export const fetchDrivers = async () => {
     {
       id: "012323",
       name: "Zyin Abdukadir",
-      avatar: "https://i.pravatar.cc/42",
+      avatar: avatar3,
       phone: "0912873465",
       carType: "Boda Boda",
       dateCreated: "04/17/23 8:25 PM",
@@ -90,7 +98,7 @@ export const fetchDrivers = async () => {
     {
       id: "012324",
       name: "Mensur Mohammed",
-      avatar: "https://i.pravatar.cc/43",
+      avatar: avatar4,
       phone: "0912873465",
       carType: "Boda Boda",
       dateCreated: "04/17/23 8:25 PM",
@@ -99,7 +107,25 @@ export const fetchDrivers = async () => {
     {
       id: "012325",
       name: "Belgi Coffie (Nayi)",
-      avatar: "https://i.pravatar.cc/44",
+      avatar: avatar5,
+      phone: "0912873465",
+      carType: "Boda Boda",
+      dateCreated: "04/17/23 8:25 PM",
+      status: "Available",
+    },
+    {
+      id: "012326",
+      name: "Belgi Coffie (Nayi)",
+      avatar: avatar6,
+      phone: "0912873465",
+      carType: "Boda Boda",
+      dateCreated: "04/17/23 8:25 PM",
+      status: "Available",
+    },
+    {
+      id: "012327",
+      name: "Belgi Coffie (Nayi)",
+      avatar: avatar7,
       phone: "0912873465",
       carType: "Boda Boda",
       dateCreated: "04/17/23 8:25 PM",

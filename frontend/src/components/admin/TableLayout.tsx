@@ -41,7 +41,7 @@ function TableLayout() {
       dataIndex: "name",
       key: "name",
       render: (_: string, record: any) => (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg">
           <Avatar src={record.avatar} />
           <div className="flex flex-col">
             <a href="#" className="text-blue-500 text-xs">
@@ -77,13 +77,15 @@ function TableLayout() {
           <span
             className="cursor-pointer"
             onClick={() =>
-              record.status === "Suspended" ? openSuspendedModal(record) : null
+              record.status === "Available" || "Offline"
+                ? openSuspendedModal(record)
+                : null
             }
           >
-            {record.status === "Suspended" ? (
-              <EyeInvisibleOutlined />
-            ) : (
+            {record.status === "Available" ? (
               <EyeOutlined />
+            ) : (
+              <EyeInvisibleOutlined />
             )}
           </span>
           <span className="cursor-pointer text-red-500">
@@ -104,6 +106,7 @@ function TableLayout() {
         columns={columns}
         dataSource={drivers}
         rowKey="id"
+        className="border border-gray-50 rounded-lg shadow-md"
         pagination={{ pageSize: 10 }}
       />
 

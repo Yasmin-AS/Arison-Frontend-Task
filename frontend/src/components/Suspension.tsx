@@ -1,4 +1,3 @@
-// components/Suspension.tsx
 import React, { useState } from "react";
 import { Tabs, Input, DatePicker, Button, Form, Modal, Divider } from "antd";
 import { suspensionStore } from "../store/suspensionStore";

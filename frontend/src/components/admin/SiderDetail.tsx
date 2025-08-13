@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Breadcrumb } from "antd";
 import { menuItems } from "../../services/menuService";
-import Menu from "./Menu"; // your Menu component
+import Menu from "./UserMgt"; // your Menu component
 
 function SiderDetail() {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);

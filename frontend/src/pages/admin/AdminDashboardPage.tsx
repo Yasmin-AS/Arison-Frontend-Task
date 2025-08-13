@@ -1,4 +1,4 @@
-import Menu from "../../components/admin/Menu";
+import Menu from "../../components/admin/UserMgt";
 import AdminLayout from "../../layouts/admin/AdminLayout";
 
 function AdminDashboardPage() {
