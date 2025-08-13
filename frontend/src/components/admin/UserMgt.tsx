@@ -20,8 +20,10 @@ const UserMgt: React.FC = () => {
   const {
     searchText,
     activeCategory,
-    activeCardId,
-    setActiveCardId,
+    activeApproveId,
+    activeOverviewId,
+    setActiveOverviewId,
+    setActiveApproveId,
     setSearchText,
     setActiveCategory,
   } = useDriverStore();
@@ -44,12 +46,6 @@ const UserMgt: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Titles */}
-      <div>
-        <h1 className="text-2xl font-bold">User Management</h1>
-        <p className="text-gray-500 text-sm">Drivers</p>
-      </div>
-
       {/* Overview & Approval Requests */}
       <Card>
         <div className="grid grid-cols-4 gap-8">
@@ -63,12 +59,14 @@ const UserMgt: React.FC = () => {
             </span>
             <div className="grid grid-cols-2 gap-4">
               {overviewData.map((card: any) => {
-                const isActive = activeCardId === card.id;
+                const isActive = activeOverviewId === card.id;
 
                 return (
                   <div
                     key={card.id}
-                    onClick={() => setActiveCardId(isActive ? null : card.id)}
+                    onClick={() =>
+                      setActiveOverviewId(isActive ? null : card.id)
+                    }
                     className={`p-4 rounded-lg shadow cursor-pointer transition-colors 
                       ${
                         isActive
@@ -115,12 +113,12 @@ const UserMgt: React.FC = () => {
               Manage your markets location and other informations.
             </p>
             {approvalRequests.map((req: any) => {
-              const isActive = activeCardId === req.id;
+              const isActive = activeApproveId === req.id;
 
               return (
                 <div className="my-2" key={req.id}>
                   <Card
-                    onClick={() => setActiveCardId(isActive ? null : req.id)}
+                    onClick={() => setActiveApproveId(isActive ? null : req.id)}
                     className={`
                       items-center border-b my-2 last:border-0 cursor-pointer transition
                       ${

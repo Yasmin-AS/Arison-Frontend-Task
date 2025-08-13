@@ -20,7 +20,6 @@ export default function Login() {
         navigate("/admin");
       },
       onError: (err) => {
-        // Optional: Show error feedback
         console.error("Login failed:", err);
       },
     });

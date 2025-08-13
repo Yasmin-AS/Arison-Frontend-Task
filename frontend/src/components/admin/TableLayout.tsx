@@ -107,7 +107,14 @@ function TableLayout() {
         dataSource={drivers}
         rowKey="id"
         className="border border-gray-50 rounded-lg shadow-md"
-        pagination={{ pageSize: 10 }}
+        pagination={{
+          total: drivers.length,
+          pageSize: 10,
+          showSizeChanger: true,
+          showQuickJumper: true,
+          showTotal: (total, range) =>
+            `${range[0]}-${range[1]} of ${total} items`,
+        }}
       />
 
       {/* Suspended Modal */}

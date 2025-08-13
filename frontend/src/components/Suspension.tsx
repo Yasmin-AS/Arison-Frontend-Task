@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Tabs, Input, DatePicker, Button, Form, Modal, Divider } from "antd";
-import { suspensionStore } from "../store/suspensionStore";
+import { Tabs, Input, Button, Form } from "antd";
+import { useSuspensionStore } from "../store/suspensionStore";
 import { useSuspend } from "../hooks/useSuspend";
 
 const { TextArea } = Input;
 
 function Suspension() {
-  const { isOpen, close, driver } = suspensionStore();
+  const { isOpen, close, driver } = useSuspensionStore();
   const [activeTab, setActiveTab] = useState<"temporary" | "permanent">(
     "temporary"
   );

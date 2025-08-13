@@ -12,10 +12,12 @@ import AccountIcon from "../../../assets/icons/settings.png";
 import HelpIcon from "../../../assets/icons/Icon6.png";
 import ProfileImg from "../../../assets/images/profile.jpg";
 import CollapseImg from "../../../assets/icons/Vector.png";
+import { useMenuStore } from "../../../store/menuStore";
 const Admin = [{ Name: "Mensur Mohammed", Role: "Super Admin" }];
 
 function SideBar() {
   const navigate = useNavigate();
+  const setSelectedItem = useMenuStore((state) => state.setSelectedItem);
 
   const menuItems = [
     {
@@ -102,9 +104,11 @@ function SideBar() {
         mode="inline"
         items={menuItems}
         onClick={({ key }) => {
-          if (!key.includes("-heading")) navigate(`/admin/${key}`);
+          if (!key.includes("-heading")) {
+            setSelectedItem(key);
+          }
         }}
-        defaultOpenKeys={["user-management"]}
+        defaultOpenKeys={["drivers"]}
         className="flex-1 border-0 custom-menu"
       />
       {Admin.map((admin, index) => (

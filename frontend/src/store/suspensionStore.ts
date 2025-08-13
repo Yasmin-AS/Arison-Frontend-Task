@@ -7,7 +7,7 @@ interface SuspensionState {
   close: () => void;
 }
 
-export const suspensionStore = create<SuspensionState>((set) => ({
+export const useSuspensionStore = create<SuspensionState>((set) => ({
   isOpen: false,
   driver: null,
   open: (driver) => set({ isOpen: true, driver }),

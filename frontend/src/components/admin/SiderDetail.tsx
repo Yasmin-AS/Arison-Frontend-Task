@@ -1,24 +1,29 @@
-import React, { useState } from "react";
-import { Breadcrumb } from "antd";
+import { useMenuStore } from "../../store/menuStore";
 import { menuItems } from "../../services/menuService";
-import Menu from "./UserMgt"; // your Menu component
+import Menu from "./UserMgt";
+import { Breadcrumb } from "antd";
 
 function SiderDetail() {
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const { selectedItem, setSelectedItem } = useMenuStore();
 
   const breadcrumbItems = menuItems.flatMap((item) => {
-    if (item.children && item.children.length > 0) {
-      return item.children.map((child) => ({
-        title: (
-          <span
-            className="text-blue-600 hover:underline cursor-pointer"
-            onClick={() => setSelectedItem(child.key)}
-          >
-            {item.label} / {child.label}
-          </span>
-        ),
-      }));
-    } else {
+    if (item.children?.length) {
+      return item.children
+        .filter((child) => child.key === selectedItem) // only active child
+        .map((child) => ({
+          title: (
+            <div className="flex flex-col p-4">
+              <span className="text-2xl font-bold">{item.label} </span>
+              <span
+                className="text-gray-400 hover:underline p-2 cursor-pointer"
+                onClick={() => setSelectedItem(child.key)}
+              >
+                {child.label}
+              </span>
+            </div>
+          ),
+        }));
+    } else if (item.key === selectedItem) {
       return {
         title: (
           <span
@@ -30,11 +35,11 @@ function SiderDetail() {
         ),
       };
     }
+    return [];
   });
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow">
-      {/* Breadcrumb */}
+    <div className="p-4 ">
       <Breadcrumb items={breadcrumbItems} />
 
       <div className="mt-6">
