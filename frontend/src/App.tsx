@@ -7,15 +7,15 @@ function App() {
   const location = useLocation();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
-  if (!isAuthenticated && !location.pathname.startsWith("/login")) {
+  if (isAuthenticated && !location.pathname.startsWith("/login")) {
     return <Navigate to="/login" replace />;
   }
 
-  if (isAuthenticated && !location.pathname.startsWith("/admin")) {
+  if (!isAuthenticated && !location.pathname.startsWith("/admin")) {
     return <Navigate to="/admin" replace />;
   }
 
-  return <>{isAuthenticated ? <AdminRoutes /> : <AuthRoutes />}</>;
+  return <>{isAuthenticated ? <AdminRoutes /> : <AdminRoutes />}</>;
 }
 
 export default App;
